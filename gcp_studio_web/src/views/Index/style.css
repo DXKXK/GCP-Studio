@@ -1,0 +1,100 @@
+/* 声明部分样式 */
+.statement-box{
+    width: 100%;
+    height: 15vh;
+    background-color: black;
+    scroll-snap-align: center;
+}
+/* --内容页面样式设计 */
+.content-box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255, 1);
+    transition: all 0.5s;
+    z-index: 3;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity; 
+    scroll-snap-stop: normal;
+    scroll-behavior: smooth; 
+    -webkit-overflow-scrolling: touch; /* 启用弹性滚动 */
+    touch-action: pan-y;
+}
+.content-box div:nth-child(2n+1){
+    /* filter: hue-rotate(45deg); */
+}
+/* 隐藏滚动条 */
+.content-box::-webkit-scrollbar {
+    display: none;
+}
+/* 内容导航栏设置 */
+.content-nav div a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+.content-nav div .a-active{
+    font-weight: bold;
+}
+
+/* ——————————————————————————————————响应式设计—————————————————————————————————— */
+
+/* 竖屏样式 */
+@media (orientation: portrait) {
+    .content-top{
+        display: none;
+    }
+}
+
+/* 横屏样式 */
+@media (orientation: landscape) {
+    /* 内容页导航栏设计 */
+    .content-top{
+        position: sticky;
+        top: 0;
+        left: 0;
+        height: 60px;
+        width: 100%;
+        z-index: 6;
+        background-color: white;
+    }
+    .content-top img{
+        position: absolute;
+        height: 30px;
+        left: 24px;
+        top: 18px;
+    }
+    .content-top .content-nav{
+        position: absolute;
+        right: 72px;
+        width: 50%;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        /* background-color: aqua; */
+    }
+    .content-nav div{
+        flex: 1;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+    }
+}
+
+/* ——————————————————————————通用样式—————————————————————————— */
+/* 弹性布局————纵向排列 */
+.flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+/* 弹性布局————横向排列 */
+.flex-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
