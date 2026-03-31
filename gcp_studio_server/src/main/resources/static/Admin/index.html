@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>匠心客管理后台</title>
+</head>
+<body>
+    <h1>管理员页面</h1>
+
+    <script>
+        window.addEventListener('beforeunload', function() {
+            // 页面关闭时发送请求
+            fetch('/api/logout', { method: 'POST' });
+        });
+    </script>
+</body>
+</html>
