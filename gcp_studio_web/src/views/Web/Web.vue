@@ -116,6 +116,15 @@
 <style scoped lang="scss">
     @import "./style.css";
 
+    .content-div{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
     .content-box{
         position: relative;
         width: 100%;

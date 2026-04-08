@@ -11,7 +11,7 @@
     <input type="checkbox" class="btn-check">
     <div class="content">
         <div class="top-box">
-            <img src="logo.png" alt="LOGO">
+            <!-- <img src="logo.png" alt="LOGO"> -->
             <button class="menu-btn">
                 <span></span>
             </button>
@@ -30,7 +30,7 @@
         
         <div class="content-box">
             <div class="content-top">
-                <img src="logo.png" alt="LOGO">
+                <!-- <img src="logo.png" alt="LOGO"> -->
                 <div class="content-nav">
                     <div>
                         <a href="#page1">页面1</a>
@@ -55,23 +55,66 @@
             <div class="content-page flex-column" id="page4">页面4</div>
             <div class="content-page flex-column" id="page5">页面5</div>
             
-            <div class="statement-box"></div>
+            <div class="statement-box" id="pageInfo"></div>
         </div>
         
 
     </div>
 
     <script>
+        let scrollIndex = 1;
+        let direction = 1;
+        let startY;
+        let endY;
+        let isScroll = false;
+        let IsTouch = false;
+
+        // 鼠标滚动
         document.querySelector('.content-box').addEventListener('wheel', (e) => {
             e.preventDefault();
+            direction = e.wheelDelta > 0 ? -1 : 1;
+            ScrollPage(e);
+        }, { passive: false });
+
+        // 触摸滑动
+        // ——滑动开始
+        document.querySelector('.content-box').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const container = e.currentTarget;
+            const touch = e.touches[0];
+            startY = touch.clientY;
+        });
+        // ——滑动中
+        document.querySelector('.content-box').addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            endY = touch.clientY;
+            direction = (endY - startY) > 0 ? -1 : 1;
+            
+        }, { passive: false });
+        // ——滑动结束
+        document.querySelector('.content-box').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            ScrollPage(e);
+        });
+
+
+        function ScrollPage(e){
+            if (IsTouch) return;
+            IsTouch = true;
             const container = e.currentTarget;
             const containerHeight = (container.clientHeight - container.clientHeight * 0.4);
-            const delta = Math.sign(e.deltaY) * containerHeight;
+            const delta = direction * containerHeight;
             container.scrollBy({
                 top: delta,
                 behavior: 'smooth'
             });
-        }, { passive: false });
+            setTimeout(()=>{
+                IsTouch = false;
+            }, 500);
+        }
+
+
     </script>
 </body>
 </html>
